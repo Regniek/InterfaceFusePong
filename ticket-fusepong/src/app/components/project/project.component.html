@@ -1,0 +1,16 @@
+<div className="Project col-md-10 offset-md-1 pt-4">
+    <div className="row">
+      <div className="col">
+        <h3>Estos son los proyectos que hay registrados en el App</h3>
+      </div>
+    </div>
+      <div *ngFor="let projects of projects" class="card my-4" >
+        <div class="card-body">
+          <h5 class="card-title">{{projects.name}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{projects.company}}</h6>
+          <p class="card-text">{{projects.description}}</p>
+          <a routerLink="/storie" href="#" class="card-link">View</a>
+        </div>
+       </div>
+    
+  </div>

@@ -1,0 +1,32 @@
+.Navbar {
+    width: 100%;
+    padding: 0.5rem 0;
+    background-color: #0C2582;
+  }
+  
+  .Navbar__brand {
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 15px;
+  }
+  
+  .Navbar__brand:hover {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .container-fluid{
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+  }
+  .Navbar_left{
+    display: flex;
+    justify-content: start;
+  }
+  .Navbar_right{
+    display: flex;
+    justify-content: end;
+    flex-wrap: wrap;
+  }
+
