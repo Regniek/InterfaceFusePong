@@ -8,15 +8,12 @@ class Navbar extends React.Component {
     return (
       <div className="Navbar">
         <div className="container-fluid">
-          <Link className="Navbar__brand" to="/">
-            <span className="font-weight-light">Home</span>
-          </Link>
-          <Link className="Navbar__brand" to="/login">
-            <span className="font-weight-light">Login</span>
-          </Link>
-          <Link className="Navbar__brand" to="/register">
-            <span className="font-weight-light">Register</span>
-          </Link>
+          <div className="Navbar_left">
+            <Link className="Navbar__brand" to="/">
+              <span className="font-weight-light">Tickets</span>
+            </Link>
+          </div>
+          
         </div>
       </div>
     );
