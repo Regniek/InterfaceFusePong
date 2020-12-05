@@ -1,0 +1,15 @@
+<div className="Storie col-md-10 offset-md-1 pt-4">
+    <div className="row">
+      <div className="col">
+        <h3>Estos son las historias para este proyecto</h3>
+      </div>
+    </div>
+    <div class="card my-4" *ngFor="let storie of stories" >
+      <div class="card-body">
+        <h5 class="card-title">{{storie.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{storie.project}}</h6>
+        <p class="card-text">{{storie.description}}</p>
+        <a routerLink="/ticket" href="#" class="card-link">Tickets</a>
+      </div>
+    </div>
+  </div>

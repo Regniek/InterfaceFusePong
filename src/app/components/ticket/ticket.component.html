@@ -1,0 +1,40 @@
+<div className="Ticket col-md-10 offset-md-1 pt-4">
+    <div className="row">
+      <div className="col">
+        <h3>Estos son los tickets para esta Historia</h3>
+      </div>
+    </div>
+    <div class="card my-4"  *ngFor="let ticket of tickets">
+      <div class="card-body">
+        <h5 class="card-title">Ticket <small>{{ticket._id}}</small></h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ticket.user}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">{{ticket.storie}}</h6>
+        <p class="card-text">{{ticket.comment}}</p>
+        <h6 class="card-subtitle mb-2 text-muted">Estado: {{ticket.status}}</h6>
+        <button className="btn btn-primary"> Editar </button>
+      </div>
+    </div>
+    
+    <div className="row">
+      <div className="col">
+        <h3>Aqui podras crear un nueva solicitud</h3>
+      </div>
+      <div className="col">
+      <button className="btn btn-primary" (click)="createTicket()"> Crear </button>
+      </div>
+    </div>
+
+    <form>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">New ticket</label>
+        <input type="text" [(ngModel)]='nComment' />
+        <h2>{{nComment}}</h2>
+        <div className="row mt-4">
+          <div className="col"><button className="btn btn-primary" (click)="activeStatus()">Activo</button></div>
+          <div className="col"><button className="btn btn-primary" (click)="inProcessStatus()">En Proceso</button></div>
+          <div className="col"><button className="btn btn-primary" (click)="finalizedStatus()">Finalizado</button></div>
+        </div>
+      </div>
+    </form>
+
+  </div>
