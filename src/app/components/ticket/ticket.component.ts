@@ -4,6 +4,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
 import { Ticket, Ticket1 } from '../../models/ticket';
 
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user';
+
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
@@ -11,10 +14,13 @@ import { Ticket, Ticket1 } from '../../models/ticket';
 })
 export class TicketComponent implements OnInit {
   @Input() ticket1: Ticket1;
+  @Input() user1: User;
   tickets: Ticket[] = [];
   storie = sessionStorage.getItem('storie');
   user = sessionStorage.getItem('userRef');
+  
   constructor(
+    private userService: UserService,
     private ticketService: TicketService,
     private route: ActivatedRoute,
   ) {
@@ -23,6 +29,7 @@ export class TicketComponent implements OnInit {
 
   ngOnInit(){
     this.fetchTickets(this.storie)
+    
   }
   
   fetchTickets(storieId:any) {
@@ -86,6 +93,14 @@ export class TicketComponent implements OnInit {
   deleteTickets(id:any) {
     this.ticketService.deleteTicket(id)
     .subscribe(ticket => {
+      this.ngOnInit()
+    })
+  }
+  fetchUser(userId:any) {
+    this.userService.getOneUser(userId)
+    .subscribe(user1 =>{
+      this.user1 = user1;
+      console.log(user1)
       this.ngOnInit()
     })
   }

@@ -7,6 +7,9 @@ import { User } from '../../models/user';
 import { ProjectService } from '../../services/project.service';
 import { Project } from '../../models/project';
 
+import { CompanyService } from '../../services/company.service';
+import { Company } from '../../models/company';
+
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
@@ -14,6 +17,7 @@ import { Project } from '../../models/project';
 })
 export class ProjectComponent implements OnInit {
   @Input() user: User[]=[];
+  @Input() company1: Company;
 
   emailX = sessionStorage.getItem('userEmail');
   projects: Project[] = [] ;
@@ -21,6 +25,7 @@ export class ProjectComponent implements OnInit {
   
   constructor(
     private projectService: ProjectService,
+    private companyService: CompanyService,
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router
@@ -30,13 +35,19 @@ export class ProjectComponent implements OnInit {
 
   ngOnInit(){
     this.fetchProjectByCompany(this.company)
-
+    this.fetchCompany(this.company)
   }
 
    fetchProjectByCompany(company:any) {
     this.projectService.getCompanyProject(company)
     .subscribe(projects =>{
       this.projects = projects;
+    });
+  }
+  fetchCompany(company1:any) {
+    this.companyService.getOneCompany(company1)
+    .subscribe(company1 =>{
+      this.company1 = company1;
     });
   }
   
