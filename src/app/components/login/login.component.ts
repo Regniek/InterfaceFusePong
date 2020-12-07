@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   @Input() login: Login[] = [];
   @Input() user: User[]=[];
 
+
   ngOnInit() {
     console.log(this.inEmail);
     console.log(this.inPassword);
@@ -37,6 +38,7 @@ export class LoginComponent implements OnInit {
   redirect() {
     this.router.navigate(['project']);
 }
+ 
 
   signIn(){
     console.log('meejecuto')
@@ -47,8 +49,9 @@ export class LoginComponent implements OnInit {
     console.log(newLogin)
     this.loginService.ingresar(newLogin)
       .subscribe(token =>{
-      console.log(token)
-      sessionStorage.setItem('Token', token.token);
+      var ArrToken = Object.values(token);
+
+      sessionStorage.setItem('Token', ArrToken[1] );
       sessionStorage.setItem('userEmail',this.inEmail);
       this.fetchUser(this.inEmail)
       this.ngOnInit()

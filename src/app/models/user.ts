@@ -14,3 +14,8 @@ export interface User1 {
     company: String,
     email: String,
 }
+
+export interface Token{
+   
+    token:any,
+}

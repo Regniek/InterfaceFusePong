@@ -1,16 +1,17 @@
-<div className="Project col-md-10 offset-md-1 pt-4">
-    <div className="row">
-      <div className="col">
+<div class="Project col-md-10 offset-md-1 pt-4">
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
         <h3>Estos son los proyectos que hay registrados en el App</h3>
       </div>
 
     </div>
-      <div *ngFor="let project of projects" class="card my-4" >
+      <div *ngFor="let project of projects" class="card my-4 col-md-10 offset-md-1" >
         <div class="card-body">
           <h5 class="card-title">{{project.name}}</h5>
           <p class="card-text">{{project.description}}</p>
-          <button (click)="sessionId(project._id)" href="#" class="card-link">View</button>
+          <button (click)="sessionId(project._id)" href="#" class="card-link btn btn-secondary">View</button>
         </div>
        </div>
     
   </div>
+

@@ -1,3 +1,8 @@
+<div class="go-to-proyect row">
+  <div class="col">
+    <a routerLink="/project">Go to Project</a>
+  </div>
+</div>
 <div class="Ticket col-md-10 offset-md-1 pt-4">
     <div class="row">
       <div class="col">
@@ -5,22 +10,22 @@
       </div>
     </div>
     
-    <button class="btn btn-primary" (click)="review('#createTicket')">Add Ticket</button>
+    <button class="btn btn-secondary" (click)="review('#createTicket')">Add Ticket</button>
       <div class="form-container card my-4" id="createTicket">
         <div class="row">
           <div class="col offset-md-2">
             <h3>Aqui podras crear una nueva solicitud</h3>
           </div>
           <div class="col">
-          <button class="btn btn-primary" (click)="createTicket()"> Crear </button>
+          <button class="btn btn-success" (click)="createTicket()"> Crear </button>
           </div>
         </div>
           <label for="formGroupExampleInput2" class="col col-md-10 offset-md-1">New ticket</label>
           <input type="text" class="form-control col-md-10 offset-md-1" [(ngModel)]='nComment' />
           <div class="row mt-4">
-            <div class="col"><button class="btn btn-primary" (click)="activeStatus()">Activo</button></div>
-            <div class="col"><button class="btn btn-primary" (click)="inProcessStatus()">En Proceso</button></div>
-            <div class="col"><button class="btn btn-primary" (click)="finalizedStatus()">Finalizado</button></div>
+            <div class="col"><button class="btn btn-secondary" (click)="activeStatus()">Activo</button></div>
+            <div class="col"><button class="btn btn-secondary" (click)="inProcessStatus()">En Proceso</button></div>
+            <div class="col"><button class="btn btn-secondary" (click)="finalizedStatus()">Finalizado</button></div>
         </div>
       </div>
 
