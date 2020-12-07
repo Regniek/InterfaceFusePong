@@ -19,4 +19,15 @@ export class TicketService {
   postTicket(data:Ticket1){
     return this.http.post(`${this.apiURL}/ticket`,data)
   }
+  getStorieTicket(storie:any){
+    return this.http.get<Ticket[]>(`${this.apiURL}/tickets/${storie}`)
+  }
+  updateTicket(id:any, changes:Partial<Ticket>){
+    return this.http.patch(`${this.apiURL}/ticket/${id}`,changes)
+  }
+
+  deleteTicket(id: String) {
+    return this.http.delete(`${this.apiURL}/ticket/${id}`)
+  }
 }
+

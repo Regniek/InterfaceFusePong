@@ -1,40 +1,43 @@
-<div className="Ticket col-md-10 offset-md-1 pt-4">
-    <div className="row">
-      <div className="col">
+<div class="Ticket col-md-10 offset-md-1 pt-4">
+    <div class="row">
+      <div class="col">
         <h3>Estos son los tickets para esta Historia</h3>
       </div>
     </div>
+    
+    <button class="btn btn-primary" (click)="review('#createTicket')">Add Ticket</button>
+      <div class="form-container card my-4" id="createTicket">
+        <div class="row">
+          <div class="col offset-md-2">
+            <h3>Aqui podras crear una nueva solicitud</h3>
+          </div>
+          <div class="col">
+          <button class="btn btn-primary" (click)="createTicket()"> Crear </button>
+          </div>
+        </div>
+          <label for="formGroupExampleInput2" class="col col-md-10 offset-md-1">New ticket</label>
+          <input type="text" class="form-control col-md-10 offset-md-1" [(ngModel)]='nComment' />
+          <div class="row mt-4">
+            <div class="col"><button class="btn btn-primary" (click)="activeStatus()">Activo</button></div>
+            <div class="col"><button class="btn btn-primary" (click)="inProcessStatus()">En Proceso</button></div>
+            <div class="col"><button class="btn btn-primary" (click)="finalizedStatus()">Finalizado</button></div>
+        </div>
+      </div>
+
     <div class="card my-4"  *ngFor="let ticket of tickets">
       <div class="card-body">
         <h5 class="card-title">Ticket <small>{{ticket._id}}</small></h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{ticket.user}}</h6>
-        <h6 class="card-subtitle mb-2 text-muted">{{ticket.storie}}</h6>
         <p class="card-text">{{ticket.comment}}</p>
         <h6 class="card-subtitle mb-2 text-muted">Estado: {{ticket.status}}</h6>
-        <button className="btn btn-primary"> Editar </button>
+        <div class="row" id="menuButton">
+          <div class="col"><button class="btn btn-primary" (click)="update(ticket._id,'Activo')">Activo</button></div>
+            <div class="col"><button class="btn btn-primary" (click)="update(ticket._id,'En Proceso')">En Proceso</button></div>
+            <div class="col"><button class="btn btn-primary" (click)="update(ticket._id,'Finalizado')">Finalizado</button></div>
+            <div class="col"><button class="btn btn-danger" (click)="deleteTickets(ticket._id)">Cancelar Ticket</button></div>
+        </div>
+
       </div>
     </div>
     
-    <div className="row">
-      <div className="col">
-        <h3>Aqui podras crear un nueva solicitud</h3>
-      </div>
-      <div className="col">
-      <button className="btn btn-primary" (click)="createTicket()"> Crear </button>
-      </div>
-    </div>
-
-    <form>
-      <div class="form-group">
-        <label for="formGroupExampleInput2">New ticket</label>
-        <input type="text" [(ngModel)]='nComment' />
-        <h2>{{nComment}}</h2>
-        <div className="row mt-4">
-          <div className="col"><button className="btn btn-primary" (click)="activeStatus()">Activo</button></div>
-          <div className="col"><button className="btn btn-primary" (click)="inProcessStatus()">En Proceso</button></div>
-          <div className="col"><button className="btn btn-primary" (click)="finalizedStatus()">Finalizado</button></div>
-        </div>
-      </div>
-    </form>
-
+    
   </div>

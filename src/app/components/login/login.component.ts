@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Login } from '../../models/login';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user';
 
 
 
@@ -14,18 +17,26 @@ export class LoginComponent implements OnInit {
 
 
   constructor(
+    private userService: UserService,
     private loginService: LoginService,
     private route: ActivatedRoute,
+    private router: Router
 
   ) { }
   @Input() login: Login[] = [];
-  
+  @Input() user: User[]=[];
 
   ngOnInit() {
+    console.log(this.inEmail);
+    console.log(this.inPassword);
   }
   // tslint:disable-next-line: member-ordering
-  inEmail: '';
-  inPassword: '';
+  inEmail= '';
+  inPassword= '';
+
+  redirect() {
+    this.router.navigate(['project']);
+}
 
   signIn(){
     console.log('meejecuto')
@@ -35,8 +46,23 @@ export class LoginComponent implements OnInit {
     }
     console.log(newLogin)
     this.loginService.ingresar(newLogin)
-      .subscribe(login =>{
-      console.log(login)
+      .subscribe(token =>{
+      console.log(token)
+      sessionStorage.setItem('Token', token.token);
+      sessionStorage.setItem('userEmail',this.inEmail);
+      this.fetchUser(this.inEmail)
+      this.ngOnInit()
+
+    });
+  }
+  fetchUser( valor: any ) {
+    this.userService.getEmailUser(valor)
+    .subscribe(user =>{
+      this.user = user;
+      console.log(user[0].company);
+      sessionStorage.setItem('userCompany',user[0].company);
+      sessionStorage.setItem('userRef',user[0]._id);
+      this.redirect()
     })
   }
 

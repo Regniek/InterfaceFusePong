@@ -1,5 +1,5 @@
 import { Component, OnInit ,Input } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { StorieService } from '../../services/storie.service';
 import { Storie } from '../../models/storie';
@@ -12,22 +12,35 @@ import { Storie } from '../../models/storie';
 export class StorieComponent implements OnInit {
   @Input() storie: Storie;
   stories: Storie[] = [];
+  project = sessionStorage.getItem('project');
 
   constructor(
     private storieService: StorieService,
     private route: ActivatedRoute,
+    private router: Router
   ) {
 
    }
 
   ngOnInit(){
-    this.fetchProject();
+    this.fetchProject(this.project);
   }
-  fetchProject() {
-    this.storieService.getStories()
+  fetchProject(projectId:any) {
+    this.storieService.getProjectStorie(projectId)
     .subscribe(stories =>{
       this.stories = stories;
       console.log(stories)
     })
   }
+
+  sessionId(projectId:any){
+    console.log(projectId)
+    sessionStorage.setItem('storie',projectId);
+    this.redirect();
+  }
+
+  redirect() {
+    this.router.navigate(['ticket']);
+}
+
 }

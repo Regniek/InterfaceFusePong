@@ -13,7 +13,11 @@ export class CompanyService {
     private http: HttpClient
   ) { }
 
-  getOneCompany(filter){
+  getCompanys(){
+    return this.http.get<Company[]>(`${this.apiURL}/company`)
+  }
+
+  getOneCompany(filter:String){
     return this.http.get<Company>(`${this.apiURL}/company/${filter}`)
   }
 }

@@ -16,4 +16,7 @@ export class ProjectService {
   getProjects(){
     return this.http.get<Project[]>(`${this.apiURL}/project`)
   }
+  getCompanyProject(company:any){
+    return this.http.get<Project[]>(`${this.apiURL}/projectc/${company}`)
+  }
 }

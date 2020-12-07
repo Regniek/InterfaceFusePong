@@ -8,6 +8,6 @@ export interface Ticket {
 export interface Ticket1 {
     comment:  String,
     status: String,
-    storie: String,
-    user: String,
+    storie: any,
+    user: any,
 }

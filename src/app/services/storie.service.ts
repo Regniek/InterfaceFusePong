@@ -16,4 +16,8 @@ export class StorieService {
   getStories(){
     return this.http.get<Storie[]>(`${this.apiURL}/storie`)
   }
+
+  getProjectStorie(project:any){
+    return this.http.get<Storie[]>(`${this.apiURL}/storiep/${project}`)
+  }
 }

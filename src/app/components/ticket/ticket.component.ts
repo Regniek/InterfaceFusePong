@@ -12,7 +12,8 @@ import { Ticket, Ticket1 } from '../../models/ticket';
 export class TicketComponent implements OnInit {
   @Input() ticket1: Ticket1;
   tickets: Ticket[] = [];
-
+  storie = sessionStorage.getItem('storie');
+  user = sessionStorage.getItem('userRef');
   constructor(
     private ticketService: TicketService,
     private route: ActivatedRoute,
@@ -20,23 +21,21 @@ export class TicketComponent implements OnInit {
 
    }
 
-   testUSer='5fc965d83249a23fa09549e1';
-   testStorie='5fc972bbad7ae345e492cf79';
-
   ngOnInit(){
-    this.fetchProject();
+    this.fetchTickets(this.storie)
   }
-  fetchProject() {
-    this.ticketService.getTickets()
+  
+  fetchTickets(storieId:any) {
+    this.ticketService.getStorieTicket(storieId)
     .subscribe(tickets =>{
       this.tickets = tickets;
       console.log(tickets)
     })
   }
 
+
   nComment:'';
-  nStatus:'';
-  
+  nStatus='';
 
   activeStatus(){
     this.nStatus = 'Activo';
@@ -56,14 +55,45 @@ export class TicketComponent implements OnInit {
     const newTicket: Ticket1 = {
       comment:  this.nComment,
       status: this.nStatus,
-      storie: this.testStorie,
-      user: this.testUSer,
+      storie: this.storie,
+      user: this.user,
     }
     console.log(newTicket)
     this.ticketService.postTicket(newTicket)
       .subscribe(ticket =>{
-      console.log(ticket)
+        this.ngOnInit()
     })
   }
   
+  review(a:any) {
+  
+    const modal = document.querySelector(a)
+    
+    if (modal.classList.contains("show-addtickets")) {
+      modal.classList.remove("show-addtickets")
+    } else {
+      modal.classList.add("show-addtickets")
+    }
+  
+  }
+
+  update(id:any,statusRef:any){
+    console.log('ingreso',id,statusRef)
+    const updateSurtido: Partial<Ticket> = {
+      status: statusRef,
+
+    }
+    this.ticketService.updateTicket(id,updateSurtido)
+    .subscribe(ticket => {
+      console.log(ticket)
+      this.ngOnInit()
+    })
+  }
+
+  deleteTickets(id:any) {
+    this.ticketService.deleteTicket(id)
+    .subscribe(ticket => {
+      this.ngOnInit()
+    })
+  }
 }
