@@ -28,8 +28,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.inEmail);
-    console.log(this.inPassword);
+
   }
   // tslint:disable-next-line: member-ordering
   inEmail= '';
@@ -41,12 +40,11 @@ export class LoginComponent implements OnInit {
  
 
   signIn(){
-    console.log('meejecuto')
     const newLogin: Login = {
       email: this.inEmail,
       password: this.inPassword,
     }
-    console.log(newLogin)
+
     this.loginService.ingresar(newLogin)
       .subscribe(token =>{
       var ArrToken = Object.values(token);
@@ -62,7 +60,6 @@ export class LoginComponent implements OnInit {
     this.userService.getEmailUser(valor)
     .subscribe(user =>{
       this.user = user;
-      console.log(user[0].company);
       sessionStorage.setItem('userCompany',user[0].company);
       sessionStorage.setItem('userRef',user[0]._id);
       this.redirect()

@@ -41,7 +41,6 @@ export class ProjectComponent implements OnInit {
   }
   
   sessionId(projectId:any){
-    console.log(projectId)
     sessionStorage.setItem('project',projectId);
     this.redirect();
   }

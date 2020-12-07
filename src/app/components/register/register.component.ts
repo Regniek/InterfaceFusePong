@@ -39,13 +39,11 @@ export class RegisterComponent implements OnInit {
     this.companyService.getCompanys()
     .subscribe(companies =>{
       this.companies = companies;
-      console.log(companies)
     })
   }
 
   companyId(a:any){
       this.xCompany = a;
-      console.log(this.xCompany)
   }
 
   redirect() {
@@ -65,10 +63,8 @@ export class RegisterComponent implements OnInit {
               company: this.xCompany,
               email: this.xEmail,
             }
-            console.log(newUser)
             this.userService.postUser(newUser)
               .subscribe(user =>{
-              console.log(user)
               this.ngOnInit()
             })
             this.redirect();

@@ -29,7 +29,6 @@ export class TicketComponent implements OnInit {
     this.ticketService.getStorieTicket(storieId)
     .subscribe(tickets =>{
       this.tickets = tickets;
-      console.log(tickets)
     })
   }
 
@@ -39,15 +38,12 @@ export class TicketComponent implements OnInit {
 
   activeStatus(){
     this.nStatus = 'Activo';
-    console.log(this.nStatus)
   }
   inProcessStatus(){
     this.nStatus = 'En Proceso';
-    console.log(this.nStatus)
   }
   finalizedStatus(){
     this.nStatus = 'Finalizado';
-    console.log(this.nStatus)
   }
 
 
@@ -58,7 +54,6 @@ export class TicketComponent implements OnInit {
       storie: this.storie,
       user: this.user,
     }
-    console.log(newTicket)
     this.ticketService.postTicket(newTicket)
       .subscribe(ticket =>{
         this.ngOnInit()
@@ -78,14 +73,12 @@ export class TicketComponent implements OnInit {
   }
 
   update(id:any,statusRef:any){
-    console.log('ingreso',id,statusRef)
     const updateSurtido: Partial<Ticket> = {
       status: statusRef,
 
     }
     this.ticketService.updateTicket(id,updateSurtido)
     .subscribe(ticket => {
-      console.log(ticket)
       this.ngOnInit()
     })
   }

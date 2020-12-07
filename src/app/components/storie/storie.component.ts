@@ -29,12 +29,10 @@ export class StorieComponent implements OnInit {
     this.storieService.getProjectStorie(projectId)
     .subscribe(stories =>{
       this.stories = stories;
-      console.log(stories)
     })
   }
 
   sessionId(projectId:any){
-    console.log(projectId)
     sessionStorage.setItem('storie',projectId);
     this.redirect();
   }
